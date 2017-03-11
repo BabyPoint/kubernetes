@@ -1,12 +1,11 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: sites
+  name: web-ingress
 spec:
   rules:
-  - host: babypointapp.com
-    http:
+  - http:
       paths:
-      - marketing:
-          serviceName: web
-          servicePort: 80
+      marketing:
+        serviceName: web
+        servicePort: 80
