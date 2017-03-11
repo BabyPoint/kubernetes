@@ -6,6 +6,6 @@ spec:
   rules:
   - http:
       paths:
-      marketing:
+      backend:
         serviceName: web
         servicePort: 80
