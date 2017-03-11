@@ -4,8 +4,9 @@ metadata:
   name: web
 spec:
   rules:
-  - http:
+  - host: babypointapp.com
+    http:
       paths:
-      backend:
-        serviceName: web
-        servicePort: 80 
+      - backend:
+          serviceName: web
+          servicePort: 80
