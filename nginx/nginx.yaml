@@ -1,35 +1,37 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web
+  name: nginx
   labels:
-    run: web
+    run: nginx
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
     protocol: TCP
     name: http
-
+  # - port: 443
+  #   protocol: TCP
+  #   name: https
   selector:
-    app: web
+    app: nginx
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: web
+  name: nginx
 spec:
-  replicas: 2 # tells deployment to run 2 pods matching the template
+  replicas: 1 # tells deployment to run 2 pods matching the template
   template: # create pods using pod definition in this template
     metadata:
       # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
       # generated from the deployment name
       labels:
-        app: web
+        app: nginx
     spec:
       containers:
-      - name: web
-        image: babypoint-on.azurecr.io/marketing/web
+      - name: nginx
+        image: babypoint-on.azurecr.io/nginx
         ports:
         - containerPort: 80
